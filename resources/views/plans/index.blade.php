@@ -33,9 +33,9 @@
                         </div>
                         <div class="plan-footer">
                             @if(Auth::guest())
-                                <a href="{{ route('register') }}" class="button is-fullwidth">Get Started</a>
+                                <a href="{{ route('register') }}" class="button is-fullwidth is-info">Get Started</a>
                             @else
-                                <a href="{{ route('plans.show', $plan->slug) }}" class="button is-fullwidth">Choose</a>
+                                <a href="{{ route('plans.show', $plan->slug) }}" class="button is-fullwidth is-info">Choose</a>
                             @endif
                         </div>
                     </div>

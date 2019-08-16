@@ -65,6 +65,10 @@ a:active {
     box-shadow: inset 0 -6px 0 rgba(255,74,110,.2);
 }
 
+.product-blocks {
+    margin-top: 4rem;
+}
+
 /* the slides */
 .slick-slide {
     margin: 0 10px;
@@ -72,10 +76,6 @@ a:active {
 /* the parent */
 .slick-list {
     margin: 0 -10px;
-}
-
-.product-blocks {
-    margin-top: 4rem;
 }
 
 /* Arrows */

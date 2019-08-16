@@ -22,7 +22,7 @@
                                     <div class="media-content">
                                         <div class="content">
                                             <p>
-                                                <a href="{{ route('shop.show', $item->model->slug) }}">{{ $item->model->name }}</a>
+                                                <a href="{{ route('shop.product', $item->model->slug) }}">{{ $item->model->name }}</a>
                                                 <br>
                                                 Qty: {{ $item->qty }}
                                             </p>

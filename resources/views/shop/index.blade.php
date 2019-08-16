@@ -5,6 +5,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1/slick/slick.min.css">
 @endsection
 
+@section('categories')
+    @foreach($categories as $category)
+    <a href="#" class="navbar-item">
+        {{ $category->name }}
+    </a>
+    @endforeach
+@endsection
+
 @section('content')
     <section class="hero is-primary is-medium is-bold">
         <div class="hero-body">
@@ -68,7 +76,7 @@
                 @foreach($products as $product)
                     <div>
                         <figure class="image is-3by4">
-                            <a href="{{route('shop.show', $product->slug)}}"><img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image"></a>
+                            <a href="{{route('shop.product', $product->slug)}}"><img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image"></a>
                         </figure>
                     </div>
                 @endforeach
@@ -80,7 +88,7 @@
                     @foreach($products as $product)
                         <div>
                             <figure class="image is-3by4">
-                                <a href="{{route('shop.show', $product->slug)}}"><img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image"></a>
+                                <a href="{{route('shop.product', $product->slug)}}"><img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image"></a>
                             </figure>
                         </div>
                     @endforeach
@@ -92,7 +100,7 @@
                     @foreach($products as $product)
                         <div>
                             <figure class="image is-3by4">
-                                <a href="{{route('shop.show', $product->slug)}}"><img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image"></a>
+                                <a href="{{route('shop.product', $product->slug)}}"><img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image"></a>
                             </figure>
                         </div>
                     @endforeach
@@ -104,7 +112,7 @@
                     @foreach($products as $product)
                         <div>
                             <figure class="image is-128x128">
-                                <a href="{{route('shop.show', $product->slug)}}"><img class="is-rounded" src="https://bulma.io/images/placeholders/256x256.png" alt="Placeholder image"></a>
+                                <a href="{{route('shop.product', $product->slug)}}"><img class="is-rounded" src="https://bulma.io/images/placeholders/256x256.png" alt="Placeholder image"></a>
                             </figure>
                         </div>
                     @endforeach

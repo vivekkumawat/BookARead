@@ -14,7 +14,12 @@
                         <h1 class="title">{{ $product->name }}</h1>
                         <h2 class="subtitle shadow is-success">By: {{ $product->author }}</h2>
                         <p>{{ $product->description }}</p>
-                        <a href="#" class="button is-primary is-fullwidth">Add to cart</a>
+                    <form action="{{ route('cart.store') }}" method="POST">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="id" value="{{ $product->id }}">
+                        <input type="hidden" name="name" value="{{ $product->name }}">
+                        <button type="submit" class="button is-primary is-fullwidth">Add to cart</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -10,14 +11,14 @@ class ShopController extends Controller
     public function index ()
     {
         $products = Product::get();
-        return view('shop.index')
-            ->with('products', $products);
+        $categories = Category::all()->take(2);
+        return view('shop.index', compact('products', 'categories'));
     }
 
-    public function show($slug)
+    public function product($slug)
     {
         $product = Product::where('slug', $slug)->firstOrFail();
-        return view('shop.show')
+        return view('shop.product')
             ->with('product', $product);
     }
 }

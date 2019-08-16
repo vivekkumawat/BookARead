@@ -42,28 +42,31 @@
                 </a>
 
                 <div class="navbar-dropdown">
-                    <a class="navbar-item">
-                        About
-                    </a>
-                    <a class="navbar-item">
-                        Jobs
-                    </a>
-                    <a class="navbar-item">
-                        Contact
-                    </a>
-                    <hr class="navbar-divider">
-                    <a class="navbar-item">
-                        Report an issue
-                    </a>
+                            @yield('categories')
+                        <hr class="navbar-divider">
+                        <a class="navbar-item">
+                            View All
+                        </a>
                 </div>
             </div>
         </div>
 
         <div class="navbar-end">
+            <div class="navbar-item is-hidden-touch">
+                <div class="control has-icons-right">
+                    <input class="input" type="text" placeholder="Search Books...">
+                    <span class="icon is-small is-right">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </div>
+            </div>
+
             @if (Auth::guest())
-                <div class="buttons">
-                    <a class="navbar-item button is-outlined" href="{{ route('login') }}">Sign in</a>
-                    <a class="navbar-item button is-primary" href="{{ route('register') }}">Get Started</a>
+                <div class="navbar-item">
+                    <div class="buttons">
+                    <a class="button is-light" href="{{ route('login') }}">Sign in</a>
+                    <a class="button is-primary" href="{{ route('register') }}">Get Started</a>
+                </div>
                 </div>
             @else
                 @if(!Auth::user()->membership_status == 0)
@@ -96,6 +99,14 @@
             @endif
         </div>
     </div>
+    <div class="navbar-item is-hidden-desktop">
+        <div class="control has-icons-right">
+            <input class="input" type="text" placeholder="Search Books...">
+            <span class="icon is-small is-right">
+                <i class="fas fa-search"></i>
+            </span>
+        </div>
+    </div>
 </nav>
 {{-- Navbar End --}}
 
@@ -116,7 +127,7 @@
                     <h4 class="has-text-white">Quick Links</h4>
                 </div>
                 <div class="column">
-                    <h4 class="has-text-white">Follow Us</h4>
+                    <h4 class="has-text-white">View All</h4>
                 </div>
             </div>
         </div>

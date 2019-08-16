@@ -22,7 +22,7 @@ Route::get('/', 'ShopController@index')->name('shop.index');
 
 // Shop Routes
 Route::prefix('shop')->group(function () {
-    Route::get('{product}', 'ShopController@show')->name('shop.show');
+    Route::get('{product}', 'ShopController@product')->name('shop.product');
 });
 
 
