@@ -26,6 +26,12 @@
             BookAread
         </a>
 
+        <a class="navbar-item modal-button is-hidden-desktop" data-target="modal-ter" aria-haspopup="true"><i class="fas fa-th has-text-grey"></i></a>
+        <a href="{{ route('cart.index') }}" class="navbar-item is-hidden-desktop" ><i class="fas fa-shopping-cart has-text-grey"></i>
+            @if(Cart::instance('default')->count() > 0)
+                ({{ Cart::instance('default')->count() }})
+            @endif
+        </a>
         <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarToggler">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -36,19 +42,7 @@
     <div id="navbarToggler" class="navbar-menu">
         <div class="navbar-start">
             <a href="{{ route('plans.index') }}" class="navbar-item">Plans</a>
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                    Categories
-                </a>
-
-                <div class="navbar-dropdown">
-                            @yield('categories')
-                        <hr class="navbar-divider">
-                        <a class="navbar-item">
-                            View All
-                        </a>
-                </div>
-            </div>
+            <a class="navbar-item modal-button is-hidden-touch" data-target="modal-ter" aria-haspopup="true"><i class="fas fa-th has-text-grey"></i>&nbsp;Categories</a>
         </div>
 
         <div class="navbar-end">
@@ -62,20 +56,22 @@
             </div>
 
             @if (Auth::guest())
+                <a href="{{ route('cart.index') }}" class="navbar-item is-hidden-touch" ><i class="fas fa-shopping-cart has-text-grey"></i>&nbsp;Cart
+                    @if(Cart::instance('default')->count() > 0)
+                        ({{ Cart::instance('default')->count() }})
+                    @endif
+                </a>
                 <div class="navbar-item">
                     <div class="buttons">
-                    <a class="button is-light" href="{{ route('login') }}">Sign in</a>
-                    <a class="button is-primary" href="{{ route('register') }}">Get Started</a>
+                        <a class="button is-primary" href="{{ route('login') }}">Sign in</a>
                 </div>
                 </div>
             @else
-                @if(!Auth::user()->membership_status == 0)
-                <a href="{{ route('cart.index') }}" class="navbar-item" >Cart
+                <a href="{{ route('cart.index') }}" class="navbar-item is-hidden-touch" ><i class="fas fa-shopping-cart has-text-grey"></i>&nbsp;Cart
                     @if(Cart::instance('default')->count() > 0)
                     ({{ Cart::instance('default')->count() }})
                     @endif
                 </a>
-                @endif
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link" href="{{ route('account.index') }}">{{ Auth::user()->name }}</a>
 
@@ -110,8 +106,8 @@
 </nav>
 {{-- Navbar End --}}
 
-
 {{-- Main Content Goes here --}}
+@include('partials.modal')
 @yield('content')
 {{-- Main Content End --}}
 
@@ -142,7 +138,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 <script src="https://kit.fontawesome.com/c1cf866455.js"></script>
-@yield('scripts')
 <script src="{{ asset('js/app.js') }}"></script>
+@yield('scripts')
 </body>
 </html>

@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         @endforeach
-                        <a href="#" class="button is-primary is-fullwidth">Place Order</a>
+                        <a href="{{ route('cart.checkout') }}" class="button is-primary is-fullwidth">Checkout Now</a>
                     </div>
                         @else
                         <h2>No items in cart</h2>

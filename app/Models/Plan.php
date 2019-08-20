@@ -10,11 +10,19 @@ class Plan extends Model
         'name',
         'slug',
         'features',
-        'price'
+        'price',
+        'security_deposit'
     ];
 
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    protected $appends =['total_price'];
+
+    public function getTotalPriceAttribute()
+    {
+        return $this->price + $this->security_deposit;
     }
 }

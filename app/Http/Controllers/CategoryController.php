@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class CheckoutController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,16 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        return view('cart.checkout');
+        if (request()->category) {
+            $products = Product::with('categories')->whereHas('categories', function($query){
+                $query->where('slug', request()->category);
+            })->paginate(10);
+            $categories = Category::all();
+            $categoryName = optional($categories->where('slug', request()->category)->first())->name;
+        } else {
+            return redirect()->route('shop.index');
+        }
+        return view('categories.index', compact('products', 'categoryName'));
     }
 
     /**
@@ -37,13 +48,7 @@ class CheckoutController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show()
     {
         //
     }

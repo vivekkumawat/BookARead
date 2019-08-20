@@ -12,25 +12,46 @@
                 <div class="column is-one-quarter">
                     <div class="box has-text-centered">
                         <h2 class="subtitle">Your plan details</h2>
-                        <ul>
-                            <li>{{ $plan->name }} Plan</li>
-                            <li>Price: {{ $plan->price }}Rs./Month</li>
-                            <li>{{ $plan->features }}</li>
-                        </ul>
+                        <h3>{{ $plan->name }} Plan</h3>
                         <br>
-                        <a href="{{ route('plans.index') }}" class="button">Change Plan</a>
-                        <br>
-                        <h2 class="subtitle">Apply Coupon Code</h2>
-                        <div class="field has-addons">
-                            <p class="control">
-                                <input class="input" type="text" placeholder="Enter coupon code">
-                            </p>
-                            <p class="control">
-                                <button class="button">
-                                    Apply
-                                </button>
-                            </p>
+                        <div class="columns">
+                            <div class="column">Plan Price:</div>
+                            <div class="column">{{ $plan->price }}Rs</div>
                         </div>
+                        @if(session()->has('coupon_code'))
+                            <div class="columns">
+                                <div class="column has-text-weight-bold is-expanded">Coupon Discount ({{ session()->get('coupon_code')['name'] }}):</div>
+                                <div class="column has-text-weight-bold">-{{ session()->get('coupon_code')['discount'] }}Rs</div>
+                            </div>
+                            <form action="{{ route('coupon.destroy') }}" method="POST">
+                                {{ csrf_field() }}
+                                {{ method_field('delete') }}
+                                <button class="button" type="submit">Remove Code</button>
+                            </form>
+                        @endif
+                        <div class="columns">
+                            <div class="column">Security Deposit:</div>
+                            <div class="column">{{ $plan->security_deposit }}Rs</div>
+                        </div>
+                        <div class="columns">
+                            <div class="column has-text-weight-bold is-size-5">Order Total:</div>
+                            <div class="column has-text-weight-bold is-size-5">{{ $plan->total_price - session()->get('coupon_code')['discount'] }}Rs</div>
+                        </div>
+                        <hr>
+                        <h2 class="subtitle">Have a Coupon Code?</h2>
+                        <form action="{{ route('coupon.store') }}" method="POST">
+                            {{ csrf_field() }}
+                            <div class="field has-addons">
+                                <p class="control">
+                                    <input class="input" type="text" name="coupon_code" placeholder="Enter coupon code">
+                                </p>
+                                <p class="control">
+                                    <button class="button is-dark" type="submit">
+                                        Apply
+                                    </button>
+                                </p>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="column is-half">

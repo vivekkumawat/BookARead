@@ -5,14 +5,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1/slick/slick.min.css">
 @endsection
 
-@section('categories')
-    @foreach($categories as $category)
-    <a href="#" class="navbar-item">
-        {{ $category->name }}
-    </a>
-    @endforeach
-@endsection
-
 @section('content')
     <section class="hero is-primary is-medium is-bold">
         <div class="hero-body">
