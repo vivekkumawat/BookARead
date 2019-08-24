@@ -68,8 +68,8 @@
                     <h2 class="subtitle">Order Details</h2>
                     <article class="media">
                         <figure class="media-left">
-                            <p class="image is-64x64">
-                                <img src="https://bulma.io/images/placeholders/128x128.png">
+                            <p class="image is-128x128">
+                                <img src="{{ asset('storage/'.$product->image) }}" alt="Awesome Book">
                             </p>
                         </figure>
                         <div class="media-content">

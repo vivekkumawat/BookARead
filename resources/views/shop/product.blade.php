@@ -7,7 +7,7 @@
             <div class="columns is-centered">
                 <div class="column is-one-quarter">
                     <figure class="image is-4by5">
-                        <img src="https://images-na.ssl-images-amazon.com/images/I/91ZXbuNExRL.jpg">
+                        <img src="{{ asset('storage/'.$product->image) }}" alt="Awesome Book">
                     </figure>
                 </div>
                 <div class="column is-half">

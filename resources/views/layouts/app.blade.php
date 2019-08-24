@@ -118,12 +118,15 @@
             <div class="columns">
                 <div class="column">
                     <h4 class="has-text-white">Customer Service</h4>
+                    {{ menu('Footer Menu - 1', 'partials.menu') }}
                 </div>
                 <div class="column">
                     <h4 class="has-text-white">Quick Links</h4>
+                    {{ menu('Footer Menu - 2', 'partials.menu') }}
                 </div>
                 <div class="column">
                     <h4 class="has-text-white">View All</h4>
+                    {{ menu('Footer Menu - 3', 'partials.menu') }}
                 </div>
             </div>
         </div>
