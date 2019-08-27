@@ -8,10 +8,11 @@
 @section('content')
     <section class="hero is-primary is-medium is-bold">
         <div class="hero-body">
-            <div class="container">
-                <h1 class="title has-text-centered">
+            <div class="container has-text-centered">
+                <h1 class="title">
                     Renting books is never easier than before.
                 </h1>
+                <a href="{{ route('plans.index') }}" class="button is-primary is-medium is-dark">Get Started</a>
             </div>
         </div>
     </section>

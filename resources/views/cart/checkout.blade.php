@@ -9,11 +9,16 @@
             <div class="columns is-centered is-variable is-8">
                 <div class="column is-5">
                     <h2 class="subtitle">Shipping Details</h2>
-                    <form method="POST" action="#">
+                    <form method="POST" action="{{ route('cart.checkout.store') }}">
                         {{ csrf_field() }}
                         <div class="field">
                             <div class="control">
                                 <input class="input" name="name" type="text" placeholder="Your Name">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input" name="email" type="email" placeholder="Your Email Address">
                             </div>
                         </div>
                         <div class="field">
@@ -24,6 +29,11 @@
                         <div class="field">
                             <div class="control">
                                 <input class="input" name="address" type="text" placeholder="Address">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input" name="city" type="text" placeholder="City">
                             </div>
                         </div>
                         <div class="field is-grouped">
@@ -52,37 +62,37 @@
                                 </p>
                             @endif
                         </div>
-                        <div class="field">
-                            <input type="hidden" name="plan" value="">
-                        </div>
-                        <div class="field has-text-left">
-                            <label class="checkbox">
-                                <input type="checkbox" name="checkbox">
-                                Save this address for future checkout
-                            </label>
-                        </div>
+{{--                        <div class="field has-text-left">--}}
+{{--                            <label class="checkbox">--}}
+{{--                                <input type="checkbox" name="checkbox">--}}
+{{--                                Save this address for future checkout--}}
+{{--                            </label>--}}
+{{--                        </div>--}}
                         <button type="submit" class="button is-primary is-fullwidth">Place Order</button>
                     </form>
                 </div>
                 <div class="column is-narrow">
                     <h2 class="subtitle">Order Details</h2>
+                    @foreach(Cart::content() as $item)
+
                     <article class="media">
                         <figure class="media-left">
-                            <p class="image is-128x128">
-                                <img src="{{ asset('storage/'.$product->image) }}" alt="Awesome Book">
+                            <p class="image is-64x64">
+                                <img src="{{ asset('storage/'.$item->model->image) }}" alt="Awesome Book">
                             </p>
                         </figure>
                         <div class="media-content">
                             <div class="content">
                                 <p>
-                                    <a href="#">Book Name</a>
+                                    <a href="{{ $item->model->slug }}">{{ $item->model->name }}</a>
                                     <br>
-                                    Qty: 1
+                                    Qty: {{ $item->qty }}
                                 </p>
                             </div>
                         </div>
                     </article>
                     <hr>
+                    @endforeach
                 </div>
             </div>
         </div>

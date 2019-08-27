@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
@@ -26,15 +28,39 @@ class CheckoutController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(Request $request, Order $order)
     {
-        //
+        try{
+            $this->validate($request, [
+                'name' => 'required',
+                'email' => 'required',
+                'mobile_no' => 'required|numeric|digits:10',
+                'address' => 'required',
+                'city' => 'required',
+                'state' => 'required',
+                'country' => 'required',
+                'pincode' => 'required|numeric|digits:6',
+            ]);
+
+            $user = $request->user();
+            $input = $request->all();
+
+            $order->create([
+                'user_id' => $user->id,
+                'email' => $input['email'],
+                'name' => $input['name'],
+                'mobile_no' => $input['mobile_no'],
+                'address' => $input['address'],
+                'city' => $input['city'],
+                'state' => $input['email'],
+                'pincode' => $input['pincode'],
+            ]);
+            Cart::instance('default')->destroy();
+            return redirect()->route('cart.checkout.confirm')->with('order_placed_success_message', 'Order Placed Successfully!');
+        }
+        catch (Exception $e){
+            //
+        }
     }
 
     /**

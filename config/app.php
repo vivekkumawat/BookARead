@@ -175,6 +175,7 @@ return [
         // Other service providers...
         Anand\LaravelPaytmWallet\PaytmWalletServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
     ],
 
     /*
@@ -229,6 +230,7 @@ return [
         // Other aliases
         'PaytmWallet' => Anand\LaravelPaytmWallet\Facades\PaytmWallet::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
     ],
 
 ];

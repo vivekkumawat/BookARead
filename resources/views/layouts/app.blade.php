@@ -47,12 +47,14 @@
 
         <div class="navbar-end">
             <div class="navbar-item is-hidden-touch">
-                <div class="control has-icons-right">
-                    <input class="input" type="text" placeholder="Search Books...">
-                    <span class="icon is-small is-right">
+                <form action="{{ route('shop.search') }}" method="GET">
+                    <div class="control has-icons-right">
+                        <input class="input" name="query" value="{{ request()->input('query') }}" type="text" placeholder="Search Books...">
+                        <span class="icon is-small is-right">
                         <i class="fas fa-search"></i>
-                    </span>
-                </div>
+                        </span>
+                    </div>
+                </form>
             </div>
 
             @if (Auth::guest())
@@ -77,9 +79,8 @@
 
                     <div class="navbar-dropdown is-right">
                         <a href="{{ route('account.index') }}" class="navbar-item">My Account</a>
-                        <a href="#" class="navbar-item">Your Orders</a>
-                        <a href="#" class="navbar-item">Your Wishlist</a>
-                        <a href="#" class="navbar-item">Settings</a>
+                        <a href="{{ route('account.orders') }}" class="navbar-item">Your Orders</a>
+                        <a href="{{ route('account.settings') }}" class="navbar-item">Settings</a>
 
                         <a class="navbar-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
@@ -96,12 +97,14 @@
         </div>
     </div>
     <div class="navbar-item is-hidden-desktop">
-        <div class="control has-icons-right">
-            <input class="input" type="text" placeholder="Search Books...">
-            <span class="icon is-small is-right">
-                <i class="fas fa-search"></i>
-            </span>
-        </div>
+        <form action="{{ route('shop.search') }}" method="GET">
+            <div class="control has-icons-right">
+                <input class="input" name="query" value="{{ request()->input('query') }}" type="text" placeholder="Search Books...">
+                    <span class="icon is-small is-right">
+                        <i class="fas fa-search"></i>
+                    </span>
+            </div>
+        </form>
     </div>
 </nav>
 {{-- Navbar End --}}
@@ -109,6 +112,7 @@
 {{-- Main Content Goes here --}}
 @include('partials.modal')
 @yield('content')
+@include('sweetalert::alert')
 {{-- Main Content End --}}
 
 
