@@ -20,6 +20,9 @@ class CreatePlansTable extends Migration
             $table->float('price');
             $table->float('security_deposit');
             $table->string('duration');
+            $table->string('no_of_books');
+            $table->string('delivery');
+            $table->string('books_type')->default('normal');
             $table->timestamps();
         });
     }
